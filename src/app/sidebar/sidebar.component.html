@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <h5 class="text-primary mb-4">Product Categories</h5>
+  <ul class="nav flex-column">
+    @for(category of categories; track category.id){
+    <li class="nav-item mb-2">
+      <a class="nav-link text-dark" (click)="filter(category.name)">{{category.name}}</a>
+    </li>
+    }
+  </ul>
+</div>

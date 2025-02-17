@@ -1,0 +1,45 @@
+<div class="container mt-2">
+    <div class="card mx-auto position-relative">
+
+        <div class="card-body mt-4">
+
+            <form action="" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+
+                <label class="sale-label " [ngClass]="{'on-sale': isOnSale(), 'no-sale': !isOnSale()}">
+                    <input type="checkbox" formControlName="onSale" class="hidden-checkbox">
+                    {{ isOnSale() ? 'On Sale!' : 'Not on Sale' }}
+                </label>
+
+                <div class="mb-1">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" class="form-control" formControlName="name">
+                </div>
+
+                <div class="mb-2">
+                    <label for="name" class="form-label">Description</label>
+                    <textarea rows="4" cols="50" class="form-control" formControlName="description"></textarea>
+                </div>
+
+                <div class="mb-1">
+                    <app-category-list [categories]="categories"
+                        (categoriesChange)="updateCategories($event)"></app-category-list>
+                </div>
+
+                <label for="name" class="form-label">Units in stock</label>
+                <input type="text" id="name" class="form-control" formControlName="unitsInStock">
+
+                <div class="price-old mb-1">
+                    <label for="name" class="form-label">Old Price</label>
+                    <input class="price-old" type="text" class="form-control" formControlName="oldPrice">
+                </div>
+
+                <div class="price-new mb-3">
+                    <label for="name" class="form-label">New Price</label>
+                    <input class="price-new" type="text" class="form-control" formControlName="price">
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-1">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

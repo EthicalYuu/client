@@ -1,0 +1,34 @@
+<div class="container mt-2">
+    <div class="card mx-auto position-relative">
+        <div class="sale-label">On Sale!</div>
+        <img src="assets/images/spring.jpg" class="card-img-top product-image" alt="{{product().name}}">
+
+        <!-- Edit Button positioned at top-right -->
+        <button class="btn btn-primary position-absolute top-0 end-0 m-2" (click)="onEdit()">Edit</button>
+
+        <div class="card-body">
+            <h1 class="card-title text-primary">{{product().name}}</h1>
+            <p class="card-text text-muted">
+                {{product().description}}
+            </p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Categories:</strong>
+                    @for(cat of product().categories; track cat.id){
+                    <p>{{cat.name}}</p>
+                    }
+                </li>
+                <li class="list-group-item">
+                    <strong>Units in Stock:</strong> {{product().unitsInStock}}
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @if(product().oldPrice){
+                    <span class="price-old">{{product().oldPrice}}</span>
+                    }
+                    <span class="price-new">{{product().price}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

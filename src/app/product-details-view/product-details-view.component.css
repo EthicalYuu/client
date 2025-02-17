@@ -1,0 +1,26 @@
+.product-image {
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.sale-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.price-new {
+    color: #d9534f;
+    font-weight: bold;
+}

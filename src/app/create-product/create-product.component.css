@@ -1,0 +1,25 @@
+.sale-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight:lighter;
+    border-radius: 5px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.hidden-checkbox {
+    appearance: none;
+}
+
+.on-sale {
+    background-color: #f44336;
+    color: white;
+}
+
+.no-sale {
+    background-color: grey;
+    color: white;
+}
