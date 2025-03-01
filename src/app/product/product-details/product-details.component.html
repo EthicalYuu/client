@@ -1,0 +1,17 @@
+@if(isEdit){
+    <app-product-details-edit [product]="this.product" (saveClicked)="toggleIsEdit()"></app-product-details-edit>
+} @else {
+    <app-product-details-view [product]="this.product" (editClicked)="toggleIsEdit()"></app-product-details-view>
+}
+
+<!-- <app-photo-editor [product]="this.product"></app-photo-editor> -->
+
+<div class="container py-5">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @for(product of recommended; track product.id){
+            <div class="col">
+            <app-product-card [product]="product"></app-product-card>
+        </div>
+        }
+    </div>
+</div>

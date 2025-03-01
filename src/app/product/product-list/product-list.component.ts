@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ProductService } from '../_services/product.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProductParams } from '../_models/ProductParams';
+import { ProductService } from '../../_services/product.service';
+import { ActivatedRoute } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
+import { ProductCardComponent } from "../product-card/product-card.component";
 
 @Component({
   selector: 'app-product-list',
-  imports: [RouterLink],
+  imports: [ProductCardComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })

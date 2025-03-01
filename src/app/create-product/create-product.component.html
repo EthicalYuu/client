@@ -3,6 +3,12 @@
 
         <div class="card-body mt-4">
 
+            <div class="col-md-3 mb-2">
+                <label for="images" class="form-label">Images</label>
+                <input id="images" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                    multiple>
+            </div>
+
             <form action="" [formGroup]="createForm" (ngSubmit)="onSubmit()">
 
                 <label class="sale-label " [ngClass]="{'on-sale': isOnSale(), 'no-sale': !isOnSale()}">
@@ -15,7 +21,7 @@
                     <input type="text" id="name" class="form-control" formControlName="name">
                 </div>
 
-                <div class="mb-2">
+                <div class="mb-1">
                     <label for="name" class="form-label">Description</label>
                     <textarea rows="4" cols="50" class="form-control" formControlName="description"></textarea>
                 </div>
@@ -25,8 +31,10 @@
                         (categoriesChange)="updateCategories($event)"></app-category-list>
                 </div>
 
-                <label for="name" class="form-label">Units in stock</label>
-                <input type="text" id="name" class="form-control" formControlName="unitsInStock">
+                <div class="mb-1">
+                    <label for="name" class="form-label">Units in stock</label>
+                    <input type="text" id="name" class="form-control" formControlName="unitsInStock">
+                </div>
 
                 <div class="price-old mb-1">
                     <label for="name" class="form-label">Old Price</label>

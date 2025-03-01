@@ -1,4 +1,5 @@
 import { Category } from "./Category";
+import { Image } from "./Image";
 
 export interface Product {
     id: number;
@@ -34,4 +35,5 @@ export interface ProductCreate {
     price?: number;
     unitsInStock?: number;
     categories?: string[];
+    imageUrls?: string[];
 }
