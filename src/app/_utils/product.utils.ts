@@ -1,4 +1,6 @@
-import { ProductCreate } from "../_models/Product";
+import { HttpParams } from "@angular/common/http";
+import { ProductCreate } from "../_models/product";
+import { ProductParams } from "../_models/productParams";
 
 export function prepareCreateProduct(formValue: any): ProductCreate {
 
@@ -15,4 +17,17 @@ export function prepareCreateProduct(formValue: any): ProductCreate {
     return Object.fromEntries(
         Object.entries(productData).filter(([_, value]) => value !== undefined)
     ) as ProductCreate;
+}
+
+export function buildParams(productParams: ProductParams): HttpParams {
+
+    let httpParams = new HttpParams();
+
+    for (const [key, value] of Object.entries(productParams)) {
+        if(value != null && value != undefined){
+            httpParams = httpParams.append(key, value);
+        }
+    }
+
+    return httpParams;
 }

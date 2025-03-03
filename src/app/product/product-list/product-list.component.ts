@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ProductService } from '../../_services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
 import { ProductCardComponent } from "../product-card/product-card.component";
+import { ProductParams } from '../../_models/productParams';
 
 @Component({
   selector: 'app-product-list',
@@ -17,15 +17,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      let httpParams = new HttpParams();
 
-      params.keys.map(key => {
-        if (params.get(key)) {
-          httpParams = httpParams.append(key, params.get(key)!);
-        }
-      });
+      const productParams: ProductParams = {
+        pageSize: Number(params.get('pageSize')) || 30,
+        tag: params.get('tag') || undefined,
+        categories: params.get('categories') || undefined, 
+        query: params.get('query') || undefined
+      };
 
-      this.productService.getAll(httpParams);
+      this.productService.getAll(productParams);
     });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, inject, input } from '@angular/core';
-import { Product } from '../_models/Product';
+import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
-import { Image } from '../_models/Image';
+import { Image } from '../_models/image';
 
 @Component({
   selector: 'app-photo-editor',

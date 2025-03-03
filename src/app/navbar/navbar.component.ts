@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ProductService } from '../_services/product.service';
-import { ProductParams } from '../_models/ProductParams';
+import { ProductParams } from '../_models/productParams';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';

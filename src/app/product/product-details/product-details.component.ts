@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ProductService } from '../../_services/product.service';
-import { Product } from '../../_models/Product';
+import { Product } from '../../_models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsEditComponent } from "../product-details-edit/product-details-edit.component";

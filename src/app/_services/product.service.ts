@@ -1,10 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { Product, ProductCreate } from '../_models/Product';
-import { ProductParams } from '../_models/ProductParams';
-import { Image } from '../_models/Image';
-import { forkJoin, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
+import { buildParams } from '../_utils/product.utils';
+import { PaginatedResult } from '../_models/pagination';
+import { Product, ProductCreate } from '../_models/product';
+import { ProductParams } from '../_models/productParams';
+import { Image } from '../_models/image';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +16,26 @@ export class ProductService {
   private http = inject(HttpClient);
   private baseUrl = environment.apiUrl;
 
-  products = signal<Product[]>([]);
+  paginatedResult = signal<PaginatedResult<Product[]> | null>(null);
 
-  private productParams = signal<ProductParams>({});
+  // private productParams = signal<ProductParams>({});
 
-  getAll(params?: HttpParams) {
+  // updateQueryParams(params: ProductParams) {
+  //   this.productParams.set(params);
+  // }
 
-    // const params = productParasms ? this.buildParams(productParams) : undefined;
+  getAll(params: ProductParams) {
 
-    return this.http.get<Product[]>(`${this.baseUrl}/products`, { params: params }).subscribe({
-      next: res => this.products.set(res)
+    return this.http.get<Product[]>(`${this.baseUrl}/products`, { observe: 'response', params: buildParams(params) }).subscribe({
+      next: res => this.setPaginationResponse(res)
     });
+  }
+
+  private setPaginationResponse(response: HttpResponse<Product[]>) {
+    this.paginatedResult.set({
+      result: response.body as Product[],
+      pagination: JSON.parse(response.headers.get('Pagination')!)
+    })
   }
 
   get(id: any) {
@@ -60,18 +71,3 @@ export class ProductService {
     return this.http.delete(`${this.baseUrl}/products/delete-image/${image.id}`);
   }
 }
-
-// private buildParams(productParams: ProductParams): HttpParams {
-
-//   let httpParams = new HttpParams();
-
-//   for (const [key, value] of Object.entries(productParams)) {
-//     httpParams = httpParams.append(key, value);
-//   }
-
-//   return httpParams;
-// }
-
-// updateProductParams(params: ProductParams) {
-//   this.productParams.set(params);
-// }

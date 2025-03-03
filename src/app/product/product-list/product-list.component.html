@@ -1,6 +1,6 @@
 <div class="container py-5">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        @for(product of productService.products(); track product.id){
+        @for(product of productService.paginatedResult()?.result; track product.id){
         <div class="col">
             <app-product-card [product]="product"></app-product-card>
         </div>

@@ -1,5 +1,4 @@
-import { Category } from "./Category";
-import { Image } from "./Image";
+import { Category } from "./category";
 
 export interface Product {
     id: number;

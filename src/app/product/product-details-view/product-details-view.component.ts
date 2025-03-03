@@ -1,5 +1,5 @@
 import { Component, input, OnChanges, OnInit, output, SimpleChanges } from '@angular/core';
-import { Product } from '../../_models/Product';
+import { Product } from '../../_models/product';
 import { MatChipsModule } from '@angular/material/chips';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 

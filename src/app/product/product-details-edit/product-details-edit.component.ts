@@ -1,5 +1,5 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
-import { Product } from '../../_models/Product';
+import { Product } from '../../_models/product';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../../_services/product.service';
 import { CategoryListComponent } from "../../category-list/category-list.component";
