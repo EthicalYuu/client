@@ -41,7 +41,6 @@ export class ProductDetailsComponent implements OnInit {
       product: this.productService.get(id),
       recommended: this.productService.getRecommended(id)
     }).subscribe(({ product, recommended }) => {
-      console.log(product);
       this.product = product;
       this.recommended = recommended;
     });

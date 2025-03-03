@@ -1,19 +1,20 @@
 <div class="container mt-2">
     <div class="card mx-auto position-relative">
-        <div class="sale-label">On Sale!</div>
 
         <div class="card-body">
 
             <form action="" [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
-                <div class="mb-1">
+                <div class="sale-label">On Sale!</div>
+
+                <div class="mb-1 mt-4">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" id="name" class="form-control" formControlName="name">
                 </div>
 
-                <div class="mb-1">
-                    <label for="name" class="form-label">Description</label>
-                    <textarea rows="4" cols="50" class="form-control" formControlName="description"></textarea>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" cols="50" class="form-control" formControlName="description"></textarea>
                 </div>
 
                 <div class="mb-1">

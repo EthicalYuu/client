@@ -5,11 +5,15 @@
 <app-navbar></app-navbar>
 
 <div class="d-flex">
-    <app-sidebar style="width: 270px; background-color: blue;"></app-sidebar>
 
-    <div class="content">
-        <router-outlet></router-outlet>
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content-footer flex-grow-1">
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
         <app-footer></app-footer>
     </div>
 </div>
-
