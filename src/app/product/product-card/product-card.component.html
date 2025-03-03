@@ -1,0 +1,10 @@
+<div class="card h-100 shadow-sm" [routerLink]="product().id.toString()">
+    @if(product().isOnSale){
+    <span class="sale-badge">Sale</span>
+    }
+    <img src="assets/images/screw.png" class="card-img-top" alt="{{product().name}}">
+    <div class="card-body">
+        <h5 class="card-title">{{product().name}}</h5>
+        <p class="price">${{product().price}}</p>
+    </div>
+</div>

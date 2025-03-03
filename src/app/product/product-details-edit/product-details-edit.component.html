@@ -1,7 +1,6 @@
 <div class="container mt-2">
     <div class="card mx-auto position-relative">
         <div class="sale-label">On Sale!</div>
-        <img src="assets/images/spring.jpg" class="card-img-top product-image" alt="{{product().name}}">
 
         <div class="card-body">
 
@@ -17,9 +16,15 @@
                     <textarea rows="4" cols="50" class="form-control" formControlName="description"></textarea>
                 </div>
 
-                <strong>Category:</strong> Hardware
-                <label for="name" class="form-label">Units in stock</label>
-                <input type="text" id="name" class="form-control" formControlName="unitsInStock">
+                <div class="mb-1">
+                    <app-category-list [categories]="categories"
+                        (categoriesChange)="updateCategories($event)"></app-category-list>
+                </div>
+
+                <div class="mb-1">
+                    <label for="name" class="form-label">Units in stock</label>
+                    <input type="text" id="name" class="form-control" formControlName="unitsInStock">
+                </div>
 
                 <div class="price-old mb-1">
                     <label for="name" class="form-label">Old Price</label>
@@ -36,3 +41,11 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="row" style="margin-bottom:15px;">
+    <div class="col-md-3">
+        <label for="file">Files</label>
+        <input type="file" id="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" multiple>
+    </div>
+</div> -->
+

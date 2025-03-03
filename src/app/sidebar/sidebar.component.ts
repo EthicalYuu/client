@@ -30,6 +30,6 @@ export class SidebarComponent implements OnInit {
   }
 
   filter(name: string) {
-    this.router.navigate(['/products'], { queryParams: { category: name} })
+    this.router.navigate(['/products'], { queryParams: { categories: name} })
   }
 }

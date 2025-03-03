@@ -10,6 +10,7 @@ export function prepareCreateProduct(formValue: any): ProductCreate {
         oldPrice: formValue.oldPrice ? formValue.oldPrice : undefined,
         price: formValue.price ? formValue.price : undefined,
         unitsInStock: formValue.unitsInStock ? formValue.unitsInStock : undefined,
+        images: formValue.images ? formValue.images : undefined,
     };
 
     return Object.fromEntries(
