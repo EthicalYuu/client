@@ -1,6 +1,6 @@
-export interface ProductParams
-{
-    pageSize: number
+export interface ProductParams {
+    pageNumber?: number
+    pageSize?: number
     tag?: string
     categories?: string
     query?: string

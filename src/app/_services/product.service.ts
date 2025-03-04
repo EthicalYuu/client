@@ -46,7 +46,7 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/products/${id}/recommended`);
   }
 
-  update(id: number, product: Partial<Product>) {
+  update(id: number, product: ProductCreate) {
     return this.http.put(`${this.baseUrl}/products/${id}`, product, { responseType: 'text' });
   }
 

@@ -1,9 +1,23 @@
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        @for(product of productService.paginatedResult()?.result; track product.id){
-        <div class="col">
-            <app-product-card [product]="product"></app-product-card>
+
+    <div class="product-list mb-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @for(product of productService.paginatedResult()?.result; track product.id){
+            <div class="col">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+            }
+        </div>
+    </div>
+
+    @if(productService.paginatedResult()?.pagination){
+        <div class="d-flex justify-content-center">
+            <pagination [boundaryLinks]="true"
+                [totalItems]="productService.paginatedResult()?.pagination!.totalItems"
+                [itemsPerPage]="productService.paginatedResult()?.pagination!.itemsPerPage"
+                (pageChanged)="pageChanged($event)" [maxSize]="10" previousText="&lsaquo;" nextText="&rsaquo;"
+                firstText="&laquo;" lastText="&raquo;">
+            </pagination>
         </div>
         }
-    </div>
 </div>

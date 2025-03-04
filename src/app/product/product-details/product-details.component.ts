@@ -8,10 +8,11 @@ import { ProductDetailsViewComponent } from "../product-details-view/product-det
 import { forkJoin } from 'rxjs';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { ViewportScroller } from '@angular/common';
+import { CreateProductComponent } from '../create-product/create-product.component';
 
 @Component({
   selector: 'app-product-details',
-  imports: [ReactiveFormsModule, ProductDetailsEditComponent, ProductDetailsViewComponent, ProductCardComponent],
+  imports: [ReactiveFormsModule, CreateProductComponent, ProductDetailsViewComponent, ProductCardComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })

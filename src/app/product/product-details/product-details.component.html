@@ -1,5 +1,5 @@
 @if(isEdit){
-    <app-product-details-edit [product]="this.product" (saveClicked)="toggleIsEdit()"></app-product-details-edit>
+    <app-create-product [product]="this.product" (saveClicked)="toggleIsEdit()"></app-create-product>
 } @else {
     <app-product-details-view [product]="this.product" (editClicked)="toggleIsEdit()"></app-product-details-view>
 }

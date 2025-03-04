@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
-import { CreateProductComponent } from './create-product/create-product.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './_guards/auth.guard';
 import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
+import { CreateProductComponent } from './product/create-product/create-product.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'products', pathMatch: 'full' },
