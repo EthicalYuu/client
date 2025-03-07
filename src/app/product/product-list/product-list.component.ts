@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { ProductParams } from '../../_models/productParams';
 import { PageChangedEvent, PaginationModule } from 'ngx-bootstrap/pagination';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +16,7 @@ export class ProductListComponent implements OnInit {
 
   private readonly route = inject(ActivatedRoute);
   productService = inject(ProductService);
+  viewPortScroller = inject(ViewportScroller);
 
   productParams: ProductParams = {
     pageNumber: 1,
@@ -41,6 +43,7 @@ export class ProductListComponent implements OnInit {
     if ($event.page !== this.productParams.pageNumber) {
       this.productParams.pageNumber = $event.page;
       this.loadProducts();
+      this.viewPortScroller.scrollToPosition([0, 0]);
     }
   }
 

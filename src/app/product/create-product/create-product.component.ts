@@ -10,16 +10,17 @@ import { ProductService } from '../../_services/product.service';
 import { CategoriesService } from '../../_services/categories.service';
 import { prepareCreateProduct } from '../../_utils/product.utils';
 import { Product } from '../../_models/product';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-create-product',
   imports: [ReactiveFormsModule,
-            MatFormFieldModule,
-            MatChipsModule,
-            MatIconModule,
-            CategoryListComponent,
-            NgClass],
+    MatFormFieldModule,
+    MatChipsModule,
+    MatIconModule,
+    CategoryListComponent,
+    NgClass],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
 })
@@ -30,6 +31,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
   private categoriesService = inject(CategoriesService);
   private toastrService = inject(ToastrService);
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
 
   product = input<Product>();
 
@@ -46,6 +48,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
     price: [''],
     onSale: [false],
     images: [new FormData()],
+    categories: [[]]
   })
 
   ngOnInit(): void {
@@ -100,38 +103,36 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    if (this.isCreateMode) this.createProduct();
-    else this.editProduct();
+    const productAction = this.isCreateMode ? this.createProduct() : this.editProduct();
+
+    productAction.subscribe({
+      next: _ => {
+        this.toastrService.success(`Product ${this.isCreateMode ? 'created' : 'edited'} successfully!`);
+
+        // FIXME: fix redirection on creation and editing.
+
+        if(this.isCreateMode){
+          this.router.navigate(['products/list']);
+        }
+      },
+      error: err => {
+        this.toastrService.error(err.error);
+      }
+    });
   }
 
   createProduct() {
-    console.log('Create')
-    this.productService.uploadImagesAndCreateProduct(
+    return this.productService.uploadImagesAndCreateProduct(
       this.formData,
       prepareCreateProduct(this.createForm.value)
-    ).subscribe({
-      next: _ => {
-        this.toastrService.success('Product created successfully!');
-      },
-      error: err => {
-        this.toastrService.error(err.error)
-      }
-    });
+    )
   }
 
   editProduct() {
-    console.log('Edit')
-    this.productService.update(
-      this.product()!.id, 
+    return this.productService.update(
+      this.product()!.id,
       prepareCreateProduct(this.createForm.value)
-    ).subscribe({
-      next: _ => {
-        this.toastrService.success('Product Edited successfully!');
-      },
-      error: err => {
-        this.toastrService.error(err.error)
-      }
-    });
+    )
   }
 }
 

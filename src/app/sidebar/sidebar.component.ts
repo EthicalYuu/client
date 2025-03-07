@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesService } from '../_services/categories.service';
 import { Category } from '../_models/category';
 import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +14,7 @@ export class SidebarComponent implements OnInit {
 
   private categoriesService = inject(CategoriesService);
   private readonly router = inject(Router);
+  private readonly viewPortScroller = inject(ViewportScroller);
 
   categories: Category[] = [];
 
@@ -28,5 +30,6 @@ export class SidebarComponent implements OnInit {
 
   filter(name: string) {
     this.router.navigate(['/products'], { queryParams: { categories: name} })
+    this.viewPortScroller.scrollToPosition([0, 0]);
   }
 }

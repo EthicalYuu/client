@@ -8,6 +8,7 @@ export interface Product {
     isOnSale: boolean;
     oldPrice?: number;
     price: number;
+    primaryImageUrl: string;
     unitsInStock: number;
     imageUrls: string[];
     manuals: Manual[];
