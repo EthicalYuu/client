@@ -12,7 +12,7 @@
             <form action="" [formGroup]="createForm" (ngSubmit)="onSubmit()">
 
                 <label class="sale-label " [ngClass]="{'on-sale': isOnSale(), 'no-sale': !isOnSale()}">
-                    <input type="checkbox" formControlName="onSale" class="hidden-checkbox">
+                    <input type="checkbox" formControlName="isOnSale" class="hidden-checkbox">
                     {{ isOnSale() ? 'On Sale!' : 'Not on Sale' }}
                 </label>
 
@@ -31,23 +31,24 @@
                         (categoriesChange)="updateCategories($event)"></app-category-list>
                 </div>
 
-                <div class="mb-1">
-                    <label for="name" class="form-label">Units in stock</label>
-                    <input type="text" id="name" class="form-control" formControlName="unitsInStock">
-                </div>
-
-                <div class="price-old mb-1">
-                    <label for="name" class="form-label">Old Price</label>
-                    <input class="price-old" type="text" class="form-control" formControlName="oldPrice">
-                </div>
-
-                <div class="price-new mb-3">
-                    <label for="name" class="form-label">New Price</label>
-                    <input class="price-new" type="text" class="form-control" formControlName="price">
+                <div class="row mb-3">
+                    <div class="form-group col-md-4">
+                        <label for="units-in-stock" class="form-label">Units in stock</label>
+                        <input type="text" id="units-in-stock" class="form-control" formControlName="unitsInStock">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="old-price" class="form-label">Old Price</label>
+                        <input id="old-price" class="price-old" type="text" class="form-control" formControlName="oldPrice">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="new-price" class="form-label">New Price</label>
+                        <input id="new-price" class="price-new" type="text" class="form-control" formControlName="price">
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary mb-1">Save</button>
             </form>
+
         </div>
     </div>
 </div>

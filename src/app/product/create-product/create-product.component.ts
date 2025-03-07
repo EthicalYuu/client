@@ -46,27 +46,38 @@ export class CreateProductComponent implements OnInit, OnChanges {
     unitsInStock: [''],
     oldPrice: [''],
     price: [''],
-    onSale: [false],
+    isOnSale: [false],
     images: [new FormData()],
     categories: [[]]
   })
 
   ngOnInit(): void {
-    this.categoriesService.getAll().subscribe({
-      next: res => {
-        this.categories = res.map(c => c.name);
-      }
-    });
+
+    this.loadAllCategories();
 
     if (this.product()) {
       this.setEditMode();
+      this.loadProductCategories();
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product'] && this.product()) {
       this.setEditMode();
+      this.loadProductCategories();
     }
+  }
+
+  loadProductCategories() {
+    this.categories = this.product()!.categories.map(c => c.name);
+  }
+
+  loadAllCategories() {
+    this.categoriesService.getAll().subscribe({
+      next: res => {
+        this.categories = res.map(c => c.name);
+      }
+    });
   }
 
   private setEditMode() {
@@ -79,7 +90,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
       unitsInStock: this.product()?.unitsInStock.toString() || '',
       oldPrice: this.product()?.oldPrice?.toString() || '',
       price: this.product()?.price?.toString() || '',
-      onSale: this.product()?.isOnSale || false
+      isOnSale: this.product()?.isOnSale || false
     })
   }
 
@@ -88,7 +99,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   isOnSale() {
-    return this.createForm.get('onSale')?.value || false;
+    return this.createForm.get('isOnSale')?.value || false;
   }
 
   uploadFile(files: FileList | null) {
@@ -103,6 +114,7 @@ export class CreateProductComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
+
     const productAction = this.isCreateMode ? this.createProduct() : this.editProduct();
 
     productAction.subscribe({
@@ -111,9 +123,9 @@ export class CreateProductComponent implements OnInit, OnChanges {
 
         // FIXME: fix redirection on creation and editing.
 
-        if(this.isCreateMode){
-          this.router.navigate(['products/list']);
-        }
+        // if (this.isCreateMode) {
+        //   this.router.navigate(['products/list']);
+        // }
       },
       error: err => {
         this.toastrService.error(err.error);
@@ -124,14 +136,14 @@ export class CreateProductComponent implements OnInit, OnChanges {
   createProduct() {
     return this.productService.uploadImagesAndCreateProduct(
       this.formData,
-      prepareCreateProduct(this.createForm.value)
+      prepareCreateProduct({ ...this.createForm.value, categories: this.categories })
     )
   }
 
   editProduct() {
     return this.productService.update(
       this.product()!.id,
-      prepareCreateProduct(this.createForm.value)
+      prepareCreateProduct({ ...this.createForm.value, categories: this.categories })
     )
   }
 }

@@ -12,6 +12,7 @@ export function prepareCreateProduct(formValue: any): ProductCreate {
         oldPrice: formValue.oldPrice ? formValue.oldPrice : undefined,
         price: formValue.price ? formValue.price : undefined,
         unitsInStock: formValue.unitsInStock ? formValue.unitsInStock : undefined,
+        categories: formValue.categories ? formValue.categories : []
     };
 
     return Object.fromEntries(

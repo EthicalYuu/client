@@ -2,10 +2,11 @@ import { Component, input, OnChanges, OnInit, output, SimpleChanges } from '@ang
 import { Product } from '../../_models/product';
 import { MatChipsModule } from '@angular/material/chips';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-details-view',
-  imports: [MatChipsModule, GalleryModule],
+  imports: [MatChipsModule, GalleryModule, CurrencyPipe],
   templateUrl: './product-details-view.component.html',
   styleUrl: './product-details-view.component.css'
 })
